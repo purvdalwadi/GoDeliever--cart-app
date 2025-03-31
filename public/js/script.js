@@ -120,7 +120,7 @@ function loadItems() {
         price: 18.50,
         description: 'Classic Margherita pizza with fresh mozzarella and basil.',
         image: '../photos/pizza.jpg',
-        category: 'pizza'
+        category: 'fastfood'
       },
       {
         id: '4',
