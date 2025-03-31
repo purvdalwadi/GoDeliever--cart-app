@@ -98,13 +98,13 @@ function updateCartCount() {
 function loadItems() {
   if (!localStorage.getItem('items')) {
     let dummyItems = [
-       {
+      {
         id: '1',
         name: 'Fresh Vegetables Pack',
         price: 15.99,
         description: 'Fresh, seasonal vegetables sourced from local farms.',
         image: '../photos/vegetables.jpg',
-        category: 'grocery' // Changed to grocery
+        category: 'groceries'
       },
       {
         id: '2',
@@ -112,7 +112,7 @@ function loadItems() {
         price: 24.99,
         description: 'Fresh, seasonal fruits sourced from local farms.',
         image: '../photos/fruits.jpg',
-        category: 'grocery' // Changed to grocery
+        category: 'groceries'
       },
       {
         id: '3',
@@ -120,7 +120,7 @@ function loadItems() {
         price: 18.50,
         description: 'Classic Margherita pizza with fresh mozzarella and basil.',
         image: '../photos/pizza.jpg',
-        category: 'fastfood'
+        category: 'italian'
       },
       {
         id: '4',
@@ -168,7 +168,7 @@ function loadItems() {
         price: 8.99,
         description: 'Warm chocolate cake with a molten chocolate center, served with vanilla ice cream.',
         image: '../photos/lava-cake.jpg',
-        category: 'desserts'
+        category: 'meals'
       },
       {
         id: '10',
@@ -176,7 +176,7 @@ function loadItems() {
         price: 11.50,
         description: 'Multigrain toast topped with mashed avocado, cherry tomatoes, and microgreens.',
         image: '../photos/avocado-toast.jpg',
-        category: 'healthy'
+        category: 'meals'
       },
       {
         id: '11',
@@ -192,7 +192,7 @@ function loadItems() {
         price: 13.99,
         description: 'Nutritious bowl with quinoa, roasted vegetables, chickpeas, and tahini dressing.',
         image: '../photos/quinoa-bowl.jpg',
-        category: 'healthy'
+        category: 'meals'
       }
     ];
     
