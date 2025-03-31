@@ -98,13 +98,13 @@ function updateCartCount() {
 function loadItems() {
   if (!localStorage.getItem('items')) {
     let dummyItems = [
-      {
+       {
         id: '1',
         name: 'Fresh Vegetables Pack',
         price: 15.99,
         description: 'Fresh, seasonal vegetables sourced from local farms.',
         image: '../photos/vegetables.jpg',
-        category: 'vegetables'
+        category: 'grocery' // Changed to grocery
       },
       {
         id: '2',
@@ -112,7 +112,7 @@ function loadItems() {
         price: 24.99,
         description: 'Fresh, seasonal fruits sourced from local farms.',
         image: '../photos/fruits.jpg',
-        category: 'fruits'
+        category: 'grocery' // Changed to grocery
       },
       {
         id: '3',
