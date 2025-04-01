@@ -104,7 +104,7 @@ function loadItems() {
         price: 15.99,
         description: 'Fresh, seasonal vegetables sourced from local farms.',
         image: '../photos/vegetables.jpg',
-        category: 'Groceries'
+        category: 'Grocery'
       },
       {
         id: '2',
@@ -112,7 +112,7 @@ function loadItems() {
         price: 24.99,
         description: 'Fresh, seasonal fruits sourced from local farms.',
         image: '../photos/fruits.jpg',
-        category: 'Groceries'
+        category: 'Grocery'
       },
       {
         id: '3',
