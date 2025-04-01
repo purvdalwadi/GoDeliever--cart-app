@@ -87,7 +87,7 @@ function loadItems() {
           price: 15.99,
           description: 'Fresh, seasonal vegetables sourced from local farms.',
           image: 'photos/vegetables.jpg',
-          category: 'Grocery'
+          category: 'grocery'
         },
         {
           id: '2',
@@ -95,7 +95,7 @@ function loadItems() {
           price: 24.99,
           description: 'Fresh, seasonal fruits sourced from local farms.',
           image: 'photos/fruits.jpg',
-          category: 'Grocery'
+          category: 'grocery'
         },
         {
           id: '3',
@@ -103,7 +103,7 @@ function loadItems() {
           price: 18.50,
           description: 'Classic Margherita pizza with fresh mozzarella and basil.',
           image: 'photos/pizza.jpg',
-          category: 'Italian'
+          category: 'italian'
         },
         {
           id: '4',
@@ -111,7 +111,7 @@ function loadItems() {
           price: 12.95,
           description: 'Rice, beans, grilled chicken, sour cream, guacamole, and pico de gallo.',
           image: 'photos/burrito-bowl.jpg',
-          category: 'Prepared Meals'
+          category: 'prepared meals'
         },
         {
           id: '5',
@@ -119,7 +119,7 @@ function loadItems() {
           price: 14.99,
           description: 'Premium beef patty with cheese, lettuce, tomato, onions, and special sauce on a brioche bun.',
           image: 'photos/burger.jpg',
-          category: 'Fast Food'
+          category: 'fast food'
         },
         {
           id: '6',
@@ -127,7 +127,7 @@ function loadItems() {
           price: 29.99,
           description: 'Assortment of fresh sushi including California rolls, salmon nigiri, and tuna maki.',
           image: 'photos/sushi.jpg',
-          category: 'Sushi'
+          category: 'sushi'
         },
         {
           id: '7',
@@ -135,7 +135,7 @@ function loadItems() {
           price: 4.50,
           description: 'Freshly brewed premium coffee made from sustainably sourced beans.',
           image: 'photos/coffee.jpg',
-          category: 'Beverages'
+          category: 'beverages'
         },
         {
           id: '8',
@@ -143,7 +143,7 @@ function loadItems() {
           price: 16.95,
           description: 'Classic Italian pasta with creamy sauce, pancetta, and parmesan cheese.',
           image: 'photos/pasta.jpg',
-          category: 'Italian'
+          category: 'italian'
         },
         {
           id: '9',
@@ -151,7 +151,7 @@ function loadItems() {
           price: 8.99,
           description: 'Warm chocolate cake with a molten chocolate center, served with vanilla ice cream.',
           image: 'photos/lava-cake.jpg',
-          category: 'Prepared Meals'
+          category: 'prepared meals'
         },
         {
           id: '10',
@@ -159,7 +159,7 @@ function loadItems() {
           price: 11.50,
           description: 'Multigrain toast topped with mashed avocado, cherry tomatoes, and microgreens.',
           image: 'photos/avocado-toast.jpg',
-          category: 'Prepared Meals'
+          category: 'prepared meals'
         },
         {
           id: '11',
@@ -167,7 +167,7 @@ function loadItems() {
           price: 5.75,
           description: 'Refreshing iced matcha latte made with premium grade matcha and almond milk.',
           image: 'photos/matcha-latte.jpg',
-          category: 'Beverages'
+          category: 'beverages'
         },
         {
           id: '12',
@@ -175,7 +175,7 @@ function loadItems() {
           price: 13.99,
           description: 'Nutritious bowl with quinoa, roasted vegetables, chickpeas, and tahini dressing.',
           image: 'photos/quinoa-bowl.jpg',
-          category: 'Prepared Meals'
+          category: 'prepared meals'
         }
       ];
       
