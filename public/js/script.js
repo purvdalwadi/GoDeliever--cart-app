@@ -87,7 +87,7 @@ function loadItems() {
           price: 15.99,
           description: 'Fresh, seasonal vegetables sourced from local farms.',
           image: 'photos/vegetables.jpg',
-          category: 'grocery'
+          category: 'groceries'
         },
         {
           id: '2',
@@ -95,7 +95,7 @@ function loadItems() {
           price: 24.99,
           description: 'Fresh, seasonal fruits sourced from local farms.',
           image: 'photos/fruits.jpg',
-          category: 'grocery'
+          category: 'groceries'
         },
         {
           id: '3',
@@ -111,7 +111,7 @@ function loadItems() {
           price: 12.95,
           description: 'Rice, beans, grilled chicken, sour cream, guacamole, and pico de gallo.',
           image: 'photos/burrito-bowl.jpg',
-          category: 'prepared meals'
+          category: 'preparedmeals'
         },
         {
           id: '5',
@@ -119,7 +119,7 @@ function loadItems() {
           price: 14.99,
           description: 'Premium beef patty with cheese, lettuce, tomato, onions, and special sauce on a brioche bun.',
           image: 'photos/burger.jpg',
-          category: 'fast food'
+          category: 'fastfood'
         },
         {
           id: '6',
@@ -151,7 +151,7 @@ function loadItems() {
           price: 8.99,
           description: 'Warm chocolate cake with a molten chocolate center, served with vanilla ice cream.',
           image: 'photos/lava-cake.jpg',
-          category: 'prepared meals'
+          category: 'preparedmeals'
         },
         {
           id: '10',
@@ -159,7 +159,7 @@ function loadItems() {
           price: 11.50,
           description: 'Multigrain toast topped with mashed avocado, cherry tomatoes, and microgreens.',
           image: 'photos/avocado-toast.jpg',
-          category: 'prepared meals'
+          category: 'preparedmeals'
         },
         {
           id: '11',
@@ -175,7 +175,7 @@ function loadItems() {
           price: 13.99,
           description: 'Nutritious bowl with quinoa, roasted vegetables, chickpeas, and tahini dressing.',
           image: 'photos/quinoa-bowl.jpg',
-          category: 'prepared meals'
+          category: 'preparedmeals'
         }
       ];
       
