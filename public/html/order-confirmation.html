@@ -41,34 +41,23 @@
   <!-- Order Confirmation Section -->
   <section class="py-5">
     <div class="container">
-      <div class="text-center mb-5">
-        <div class="mb-4">
-          <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
-        </div>
-        <h2>Order Confirmed!</h2>
-        <p class="lead">Thank you for your order. We've received your request and will process it shortly.</p>
-      </div>
-      
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="mb-0">Order Summary</h5>
-            </div>
-            <div class="card-body" id="order-details">
-              <!-- Order details will be loaded here via JavaScript -->
-              <div class="text-center py-4">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="mt-2">Loading order details...</p>
+          <div class="card">
+            <div class="card-body text-center">
+              <i class="bi bi-check-circle-fill text-success display-1 mb-4"></i>
+              <h2 class="card-title mb-4">Order Confirmed!</h2>
+              <p class="lead mb-4">Thank you for your order. We've sent a confirmation email to your registered email address.</p>
+              
+              <div id="order-details" class="text-start mb-4">
+                <!-- Order details will be loaded here via JavaScript -->
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="index.html" class="btn btn-primary me-md-2">Continue Shopping</a>
+                <a href="orders.html" class="btn btn-outline-primary">View Orders</a>
               </div>
             </div>
-          </div>
-          
-          <div class="text-center">
-            <a href="index.html" class="btn btn-outline-primary me-2">Continue Shopping</a>
-            <a href="orders.html" class="btn btn-primary">View My Orders</a>
           </div>
         </div>
       </div>
@@ -92,7 +81,7 @@
           </ul>
         </div>
         <div class="col-md-6 text-md-end">
-          <p class="text-white-50 mb-0">&copy; 2023 DeliverEase. All rights reserved.</p>
+          <p class="text-white-50 mb-0">&copy; 2025 DeliverEase. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -100,66 +89,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/script.js"></script>
-  <script>
-    // Display order details
-    document.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const orderId = urlParams.get('id');
-      
-      if (orderId) {
-        // Get all orders
-        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-        
-        // Find the specific order
-        const order = orders.find(o => o.id === orderId);
-        
-        if (order) {
-          const orderDetailsContainer = document.getElementById('order-details');
-          
-          let itemsHtml = '';
-          order.items.forEach(item => {
-            itemsHtml += `
-              <div class="d-flex justify-content-between mb-2">
-                <span>${item.name} × ${item.quantity}</span>
-                <span>$${(item.price * item.quantity).toFixed(2)}</span>
-              </div>
-            `;
-          });
-          
-          orderDetailsContainer.innerHTML = `
-            <div class="mb-4">
-              <p class="mb-1"><strong>Order ID:</strong> ${order.id}</p>
-              <p class="mb-1"><strong>Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
-              <p class="mb-0"><strong>Status:</strong> <span class="badge bg-warning">Pending</span></p>
-            </div>
-            
-            <h6>Items</h6>
-            <div class="mb-3">
-              ${itemsHtml}
-            </div>
-            
-            <hr>
-            
-            <div class="d-flex justify-content-between mb-1">
-              <span>Subtotal:</span>
-              <span>$${order.subtotal.toFixed(2)}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-              <span>Shipping:</span>
-              <span>${order.shipping === 0 ? 'FREE' : '$' + order.shipping.toFixed(2)}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-              <span>Tax:</span>
-              <span>$${order.tax.toFixed(2)}</span>
-            </div>
-            <div class="d-flex justify-content-between fw-bold">
-              <span>Total:</span>
-              <span>$${order.total.toFixed(2)}</span>
-            </div>
-          `;
-        }
-      }
-    });
-  </script>
 </body>
 </html>
