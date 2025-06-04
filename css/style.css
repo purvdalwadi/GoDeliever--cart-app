@@ -1,0 +1,562 @@
+:root {
+  --primary: #1EAEDB;
+  --secondary: #0EA5E9;
+  --dark: #1A1F2C;
+  --light: #F6F6F7;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+img{
+  transition: transform 0.3s ease-in-out;
+}
+img:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: var(--dark);
+}
+
+.navbar {
+  box-shadow: var(--box-shadow);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: var(--primary);
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--secondary);
+}
+
+.nav-item .nav-link {
+  color: var(--dark);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-item .nav-link:hover,
+.nav-item .nav-link.active {
+  color: var(--primary);
+}
+
+.nav-item .nav-link:hover::after,
+.nav-item .nav-link.active::after {
+  transform: scaleX(0.8);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.hero {
+  min-height: 50vh;
+  background: linear-gradient(rgba(26, 31, 44, 0.7), rgba(26, 31, 44, 0.7)), url('../photos/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: var(--box-shadow);
+}
+
+.card:hover, .card:hover img{
+
+  object-fit: cover;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.item-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(30, 174, 219, 0.25);
+}
+
+footer {
+  background-color: var(--dark);
+  margin-top: auto;
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+footer .container {
+  padding: 0 1rem;
+}
+
+footer h5, 
+footer h6 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.cart-badge {
+  position: relative;
+  top: -8px;
+  right: 5px;
+  font-size: 0.7rem;
+}
+
+.category-pill {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-pill:hover, .category-pill.active {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+.login-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+}
+
+.order-status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: #ffeeba;
+  color: #856404;
+}
+
+.status-processing {
+  background-color: #b8daff;
+  color: #004085;
+}
+
+.status-delivered {
+  background-color: #c3e6cb;
+  color: #155724;
+}
+
+.status-cancelled {
+  background-color: #f5c6cb;
+  color: #721c24;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main, section {
+  flex: 1 0 auto;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+#profile-container {
+  margin-bottom: 1rem;
+  max-height: calc(100dvh - 300px);
+  position: relative;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+#order-history {
+  max-height: calc(80dvh - 400px);
+  overflow-y: auto;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+#order-history .card {
+  margin-bottom: 1rem;
+}
+
+#order-history::-webkit-scrollbar {
+  width: 8px;
+}
+
+#order-history::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#order-history::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+#order-history::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding: 0.75rem 0;
+  }
+  
+  footer .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .col-md-4,
+  footer .col-md-2,
+  footer .col-md-6 {
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  footer .text-md-end {
+    text-align: center !important;
+  }
+
+  footer ul {
+    padding-left: 0;
+  }
+
+  footer li {
+    margin-bottom: 0.25rem;
+  }
+  
+  footer h5, 
+  footer h6 {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+  
+  #profile-container {
+    min-height: calc(100vh - 250px);
+  }
+  
+  #order-history {
+    max-height: calc(100vh - 350px);
+  }
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 0.5rem 0;
+  }
+
+  footer h5,
+  footer h6 {
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+  }
+
+  footer .col-md-4,
+  footer .col-md-2,
+  footer .col-md-6 {
+    margin-bottom: 0.5rem;
+  }
+
+  footer a,
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Orders page specific styles */
+#orders-container {
+  max-height: calc(100dvh - 300px);
+  overflow-y: auto;
+  padding-right: 1rem;
+  position: relative;
+  margin-bottom: 10rem;
+  padding-bottom: 4rem;
+}
+
+#orders-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#orders-container::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.5);
+  border-radius: 3px;
+  margin: 4px 0;
+}
+
+#orders-container::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+#orders-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox scrollbar */
+#orders-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(241, 241, 241, 0.5);
+}
+
+/* Smooth scrolling */
+#orders-container {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar when not needed */
+#orders-container:not(:hover)::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+#orders-container .card {
+  margin-bottom: 1.5rem;
+}
+
+#orders-container .card:last-child {
+  margin-bottom: 10px;
+}
+
+/* Order details in orders page */
+.order-details {
+  max-height: calc(80dvh - 450px);
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+/* Custom scrollbar styles - only for my-orders */
+#order-history::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#order-history::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.5);
+  border-radius: 3px;
+  margin: 4px 0;
+}
+
+#order-history::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+#order-history::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox scrollbar - only for my-orders */
+#order-history {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(241, 241, 241, 0.5);
+}
+
+/* Smooth scrolling - only for my-orders */
+#order-history {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar when not needed - only for my-orders */
+#order-history:not(:hover)::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Order status badges */
+.order-status {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-processing {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-delivered {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive adjustments for orders page */
+@media (max-width: 768px) {
+  #orders-container {
+    min-height: calc(100dvh - 250px);
+    max-height: calc(100dvh - 150px);
+  }
+  
+  .order-details {
+    max-height: calc(100dvh - 400px);
+  }
+  
+  .order-status {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Custom scrollbar styles */
+#orders-container::-webkit-scrollbar,
+#order-history::-webkit-scrollbar,
+.order-details::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#orders-container::-webkit-scrollbar-track,
+#order-history::-webkit-scrollbar-track,
+.order-details::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.5);
+  border-radius: 3px;
+  margin: 4px 0;
+}
+
+#orders-container::-webkit-scrollbar-thumb,
+#order-history::-webkit-scrollbar-thumb,
+.order-details::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+#orders-container::-webkit-scrollbar-thumb:hover,
+#order-history::-webkit-scrollbar-thumb:hover,
+.order-details::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox scrollbar */
+#orders-container,
+#order-history,
+.order-details {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(241, 241, 241, 0.5);
+}
+
+/* Smooth scrolling */
+#orders-container,
+#order-history,
+.order-details {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar when not needed */
+#orders-container:not(:hover)::-webkit-scrollbar-thumb,
+#order-history:not(:hover)::-webkit-scrollbar-thumb,
+.order-details:not(:hover)::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Custom scrollbar styles */
+#profile-container::-webkit-scrollbar,
+#orders-container::-webkit-scrollbar,
+#order-history::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+#profile-container::-webkit-scrollbar-track,
+#orders-container::-webkit-scrollbar-track,
+#order-history::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.5);
+  border-radius: 3px;
+  margin: 4px 0;
+}
+
+#profile-container::-webkit-scrollbar-thumb,
+#orders-container::-webkit-scrollbar-thumb,
+#order-history::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+#profile-container::-webkit-scrollbar-thumb:hover,
+#orders-container::-webkit-scrollbar-thumb:hover,
+#order-history::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox scrollbar */
+#profile-container,
+#orders-container,
+#order-history {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(241, 241, 241, 0.5);
+}
+
+/* Smooth scrolling */
+#profile-container,
+#orders-container,
+#order-history {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar when not needed */
+#profile-container:not(:hover)::-webkit-scrollbar-thumb,
+#orders-container:not(:hover)::-webkit-scrollbar-thumb,
+#order-history:not(:hover)::-webkit-scrollbar-thumb {
+  background: transparent;
+}
