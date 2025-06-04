@@ -27,7 +27,7 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./public/html         # 👈 your custom Jekyll source directory
+          source: ./html         # 👈 your custom Jekyll source directory
           destination: ./_site          # output folder still _site unless you change Pages settings
 
       - name: Upload artifact
