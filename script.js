@@ -340,7 +340,7 @@ function displayItems(category = null) {
                  class="card-img-top w-100 h-100" 
                  alt="${item.name}" 
                  style="object-fit: cover;"
-                 onerror="this.onerror=null; this.src='../photos/placeholder.svg';"
+                 onerror="this.onerror=null; this.src='./placeholder.svg';"
                  loading="lazy">
           </div>
           <div class="card-body">
