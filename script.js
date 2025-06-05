@@ -208,7 +208,7 @@ function loadItems() {
           name: 'Fresh Vegetables Pack',
           price: 15.99,
           description: 'Fresh, seasonal vegetables sourced from local farms.',
-          image: '../photos/vegetables.jpg',
+          image: './vegetables.jpg',
           category: 'grocery'
         },
         {
@@ -216,7 +216,7 @@ function loadItems() {
           name: 'Organic Fruit Basket', 
           price: 24.99,
           description: 'Fresh, seasonal fruits sourced from local farms.',
-          image: '../photos/fruits.jpg',
+          image: './fruits.jpg',
           category: 'grocery'
         },
         {
@@ -224,7 +224,7 @@ function loadItems() {
           name: 'Artisan Pizza',
           price: 18.50,
           description: 'Classic Margherita pizza with fresh mozzarella and basil.',
-          image: '../photos/pizza.jpg',
+          image: './pizza.jpg',
           category: 'italian'
         },
         {
@@ -232,7 +232,7 @@ function loadItems() {
           name: 'Chicken Burrito Bowl',
           price: 12.95,
           description: 'Rice, beans, grilled chicken, sour cream, guacamole, and pico de gallo.',
-          image: '../photos/burrito-bowl.jpg',
+          image: './burrito-bowl.jpg',
           category: 'preparedmeals'
         },
         {
@@ -240,7 +240,7 @@ function loadItems() {
           name: 'Gourmet Burger',
           price: 14.99,
           description: 'Premium beef patty with cheese, lettuce, tomato, onions, and special sauce on a brioche bun.',
-          image: '../photos/burger.jpg',
+          image: './burger.jpg',
           category: 'fastfood'
         },
         {
@@ -248,7 +248,7 @@ function loadItems() {
           name: 'Fresh Sushi Platter',
           price: 29.99,
           description: 'Assortment of fresh sushi including California rolls, salmon nigiri, and tuna maki.',
-          image: '../photos/sushi.jpg',
+          image: './sushi.jpg',
           category: 'sushi'
         },
         {
@@ -256,7 +256,7 @@ function loadItems() {
           name: 'Premium Coffee',
           price: 4.50,
           description: 'Freshly brewed premium coffee made from sustainably sourced beans.',
-          image: '../photos/coffee.jpg',
+          image: './coffee.jpg',
           category: 'beverages'
         },
         {
@@ -264,7 +264,7 @@ function loadItems() {
           name: 'Pasta Carbonara',
           price: 16.95,
           description: 'Classic Italian pasta with creamy sauce, pancetta, and parmesan cheese.',
-          image: '../photos/pasta.jpg',
+          image: './pasta.jpg',
           category: 'italian'
         },
         {
@@ -272,7 +272,7 @@ function loadItems() {
           name: 'Chocolate Lava Cake',
           price: 8.99,
           description: 'Warm chocolate cake with a molten chocolate center, served with vanilla ice cream.',
-          image: '../photos/lava-cake.jpg',
+          image: './lava-cake.jpg',
           category: 'desserts'
         },
         {
@@ -280,7 +280,7 @@ function loadItems() {
           name: 'Avocado Toast',
           price: 11.50,
           description: 'Multigrain toast topped with mashed avocado, cherry tomatoes, and microgreens.',
-          image: '../photos/avocado-toast.jpg',
+          image: './avocado-toast.jpg',
           category: 'healthy'
         },
         {
@@ -288,7 +288,7 @@ function loadItems() {
           name: 'Iced Matcha Latte',
           price: 5.75,
           description: 'Refreshing iced matcha latte made with premium grade matcha and almond milk.',
-          image: '../photos/matcha-latte.jpg',
+          image: './matcha-latte.jpg',
           category: 'beverages'
         },
         {
@@ -296,7 +296,7 @@ function loadItems() {
           name: 'Quinoa Bowl',
           price: 13.99,
           description: 'Nutritious bowl with quinoa, roasted vegetables, chickpeas, and tahini dressing.',
-          image: '../photos/quinoa-bowl.jpg',
+          image: './quinoa-bowl.jpg',
           category: 'healthy'
         }
       ];
