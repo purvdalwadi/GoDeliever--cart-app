@@ -1360,20 +1360,39 @@ function displayOrderConfirmation() {
   const orderDetailsContainer = document.getElementById('order-details');
   if (!orderDetailsContainer) return;
 
+  // Clear any existing content first
+  orderDetailsContainer.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+  // Try to get order from URL parameters first
   const urlParams = new URLSearchParams(window.location.search);
   const orderId = urlParams.get('id');
   
   if (!orderId) {
-    orderDetailsContainer.innerHTML = '<div class="alert alert-danger">Order ID not found</div>';
+    orderDetailsContainer.innerHTML = '<div class="alert alert-warning">Order ID not found in the URL. Please check your order history.</div>';
     return;
   }
 
   try {
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const order = orders.find(o => o.id === orderId);
+    // Get orders from localStorage with better error handling
+    const ordersJson = localStorage.getItem('orders');
+    if (!ordersJson) {
+      throw new Error('No orders found in your account');
+    }
+
+    const orders = JSON.parse(ordersJson);
+    if (!Array.isArray(orders)) {
+      throw new Error('Invalid orders data format');
+    }
+    
+    const order = orders.find(o => o && o.id === orderId);
     
     if (!order) {
-      orderDetailsContainer.innerHTML = '<div class="alert alert-danger">Order not found</div>';
+      orderDetailsContainer.innerHTML = `
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          Order #${orderId} not found in your account.
+        </div>
+      `;
       return;
     }
 
@@ -1387,44 +1406,120 @@ function displayOrderConfirmation() {
       `;
     });
 
+    // Format the order date with time
+    const orderDate = order.createdAt 
+      ? new Date(order.createdAt).toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      : 'N/A';
+
+    // Safely get delivery details with fallbacks
+    const delivery = order.deliveryDetails || {};
+    const addressParts = [
+      delivery.address,
+      [delivery.city, delivery.state, delivery.zipCode].filter(Boolean).join(', ')
+    ].filter(Boolean);
+
     orderDetailsContainer.innerHTML = `
-      <div class="mb-4" >
-        <p class="mb-1"><strong>Order ID:</strong> ${order.id}</p>
-        <p class="mb-1"><strong>Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
-        <p class="mb-1"><strong>Status:</strong> <span class="badge bg-${getStatusBadgeColor(order.status)}">${order.status}</span></p>
-      </div>
-      
-      <h6>Delivery Details</h6>
-      <div class="mb-3">
-        <p class="mb-1">${order.deliveryDetails.name}</p>
-        <p class="mb-1">${order.deliveryDetails.address}</p>
-        <p class="mb-1">${order.deliveryDetails.city}, ${order.deliveryDetails.state} ${order.deliveryDetails.zipCode}</p>
-        <p class="mb-1">${order.deliveryDetails.phone}</p>
-        ${order.deliveryDetails.instructions ? `<p class="mb-1"><small>Instructions: ${order.deliveryDetails.instructions}</small></p>` : ''}
-      </div>
-      
-      <h6>Items</h6>
-      <div class="mb-3">
-        ${itemsHtml}
-      </div>
-      
-      <hr>
-      
-      <div class="d-flex justify-content-between mb-1">
-        <span>Subtotal:</span>
-        <span>$${order.subtotal.toFixed(2)}</span>
-      </div>
-      <div class="d-flex justify-content-between mb-1">
-        <span>Shipping:</span>
-        <span>${order.shipping === 0 ? 'FREE' : '$' + order.shipping.toFixed(2)}</span>
-      </div>
-      <div class="d-flex justify-content-between mb-1">
-        <span>Tax:</span>
-        <span>$${order.tax.toFixed(2)}</span>
-      </div>
-      <div class="d-flex justify-content-between fw-bold">
-        <span>Total:</span>
-        <span>$${order.total.toFixed(2)}</span>
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="mb-4">
+            <h5 class="mb-2">Order #${order.id || 'N/A'}</h5>
+            <div class="d-flex flex-wrap gap-3">
+              <div class="d-flex align-items-center text-muted">
+                <i class="bi bi-calendar3 me-2"></i>
+                <span>${orderDate}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <span class="badge bg-${getStatusBadgeColor(order.status || 'pending')} px-3 py-2">
+                  <i class="bi bi-${getStatusIcon(order.status || 'pending')} me-1"></i>
+                  ${(order.status || 'Pending').charAt(0).toUpperCase() + (order.status || 'Pending').slice(1).toLowerCase()}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="bg-light p-3 rounded">
+                <h6 class="mb-3">
+                  <i class="bi bi-truck me-2 text-primary"></i>Delivery Details
+                </h6>
+                <p class="mb-1 fw-medium">${delivery.name || 'Not specified'}</p>
+                ${addressParts.map(part => `<p class="mb-1">${part}</p>`).join('')}
+                <p class="mb-1">${delivery.phone || 'No phone provided'}</p>
+                ${delivery.instructions ? `
+                  <div class="mt-2 pt-2 border-top">
+                    <p class="mb-0 small text-muted">
+                      <i class="bi bi-info-circle me-1"></i>
+                      <strong>Delivery Instructions:</strong> ${delivery.instructions}
+                    </p>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="bg-light p-3 rounded">
+                <h6 class="mb-3">
+                  <i class="bi bi-receipt me-2 text-primary"></i>Order Summary
+                </h6>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Subtotal:</span>
+                  <span>$${(order.subtotal || 0).toFixed(2)}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Shipping:</span>
+                  <span>${(order.shipping || 0) === 0 ? 'FREE' : '$' + (order.shipping || 0).toFixed(2)}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tax:</span>
+                  <span>$${(order.tax || 0).toFixed(2)}</span>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between fw-bold">
+                  <span>Total:</span>
+                  <span>$${(order.total || 0).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="mb-3">
+              <i class="bi bi-bag me-2 text-primary"></i>Order Items
+            </h6>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item</th>
+                    <th class="text-end">Price</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-end">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${order.items && order.items.length > 0 ? 
+                    order.items.map(item => `
+                      <tr>
+                        <td>${item.name || 'Unnamed Item'}</td>
+                        <td class="text-end">$${(item.price || 0).toFixed(2)}</td>
+                        <td class="text-center">${item.quantity || 1}</td>
+                        <td class="text-end">$${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</td>
+                      </tr>
+                    `).join('') : 
+                    '<tr><td colspan="4" class="text-center text-muted py-3">No items found in this order</td></tr>'
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     `;
   } catch (error) {
@@ -1439,15 +1534,17 @@ function displayOrderHistory() {
 
   try {
     const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const userOrders = orders.filter(order => order.deliveryDetails.email === currentUser.email);
+    const userOrders = orders.filter(order => order.deliveryDetails?.email === currentUser.email);
 
     if (userOrders.length === 0) {
       orderHistoryContainer.innerHTML = `
-        <div class="text-center py-4">
-          <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-            <i class="bi bi-bag text-primary fs-4"></i>
+        <div class="text-center py-5">
+          <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <i class="bi bi-bag text-primary fs-3"></i>
           </div>
-          <p class="text-muted mb-0">You haven't placed any orders yet.</p>
+          <h5 class="mb-2">No Orders Yet</h5>
+          <p class="text-muted mb-4">You haven't placed any orders yet.</p>
+          <a href="index.html" class="btn btn-primary">Start Shopping</a>
         </div>
       `;
       return;
@@ -1457,44 +1554,64 @@ function displayOrderHistory() {
 
     let html = '';
     userOrders.forEach(order => {
-      const orderDate = new Date(order.createdAt).toLocaleDateString();
-      const orderTime = new Date(order.createdAt).toLocaleTimeString();
+      const orderDate = new Date(order.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+      const orderTime = new Date(order.createdAt).toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      // Count total items in the order
+      const itemCount = order.items?.reduce((total, item) => total + (item.quantity || 1), 0) || 0;
       
       html += `
-        <div class="card shadow-sm mb-3">
-          <div class="card-body p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="card order-card">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
             <div>
-                <h6 class="mb-1">Order #${order.id}</h6>
-                <small class="text-muted">
-                  <i class="bi bi-calendar me-1"></i>${orderDate} at ${orderTime}
-                </small>
+              <h6 class="mb-0 fw-bold">Order #${order.id}</h6>
+              <small class="text-muted">
+                <i class="bi bi-calendar3 me-1"></i>${orderDate} • ${orderTime}
+              </small>
             </div>
-              <span class="badge rounded-pill bg-${getStatusBadgeColor(order.status)} px-2 py-1">
-                <i class="bi bi-${getStatusIcon(order.status)} me-1"></i>${order.status}
-              </span>
+            <span class="badge rounded-pill bg-${getStatusBadgeColor(order.status)} px-3 py-1">
+              <i class="bi bi-${getStatusIcon(order.status)} me-1"></i>
+              ${order.status.charAt(0).toUpperCase() + order.status.slice(1).toLowerCase()}
+            </span>
           </div>
-            <div class="row g-2">
-              <div class="col-md-6">
-                <div class="bg-light p-2 rounded">
-                  <p class="mb-1"><strong>${order.deliveryDetails.name}</strong></p>
-                  <p class="mb-1 small text-muted">${order.deliveryDetails.address}</p>
-              </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-7">
+                <div class="d-flex align-items-start">
+                  <div class="me-3 text-primary">
+                    <i class="bi bi-geo-alt-fill fs-5"></i>
+                  </div>
+                  <div>
+                    <h6 class="mb-1">${order.deliveryDetails?.name || 'Delivery Address'}</h6>
+                    <p class="mb-0 small text-muted">${order.deliveryDetails?.address || ''}</p>
+                  </div>
                 </div>
-              <div class="col-md-6">
-                <div class="bg-light p-2 rounded">
+              </div>
+              <div class="col-md-5">
+                <div class="bg-light p-3 rounded">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Items:</span>
+                    <span class="fw-medium">${itemCount}</span>
+                  </div>
                   <div class="d-flex justify-content-between">
-                  <span>Total:</span>
-                    <span class="fw-bold">$${order.total.toFixed(2)}</span>
+                    <span class="text-muted">Total:</span>
+                    <span class="fw-bold">$${order.total?.toFixed(2) || '0.00'}</span>
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
-            <div class="mt-2 text-end">
-              <a href="order-confirmation.html?id=${order.id}" class="btn btn-sm btn-outline-primary">
-                <i class="bi bi-eye me-1"></i>View Details
-              </a>
-            </div>
+          </div>
+          <div class="card-footer bg-transparent text-end">
+            <a href="order-confirmation.html?id=${order.id}" class="btn btn-outline-primary btn-sm">
+              <i class="bi bi-eye me-1"></i>View Order Details
+            </a>
           </div>
         </div>
       `;
